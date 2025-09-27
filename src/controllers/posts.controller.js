@@ -30,11 +30,22 @@ export async function getPosts(req,res) {
     })
     
 }
+export async function getPostById(req, res) {
+  const { id } = req.params
+  const posts = await db.read(FILE)
+  const index = posts.findIndex(p => p.id === +id)
+  if (index === -1) return res.status(404).json({ message: "Post topilmadi" })
+
+  posts[index].views += 1
+  await db.write(FILE, posts)
+
+  res.json(posts[index])
+}
 
 export async function createPost(req, res) {
-  const { title, content, category, summary, status = "draft" } = req.body
+  const { title, content, category, summary, status,authorId } = req.body
 
-  if (!title || !content || !category || !summary) {
+  if (!title || !content || !category || !summary || !authorId) {
     return res.status(400).json({ message: "Barcha maydonlar shart" })
   }
 
@@ -52,9 +63,10 @@ export async function createPost(req, res) {
     category,
     summary,
     slug,
-    status,
+    status: status || "draft",
     views: 0,
     likes: 0,
+    authorId
   }
 
   posts.push(newPost)
@@ -107,5 +119,27 @@ export async function deletePost(req, res) {
 
   await db.write(FILE, filtered)
   res.json({ message: "Post o'chirildi" })
+}
+
+export async function likePost(req, res) {
+  const { id } = req.params
+  const posts = await db.read(FILE)
+  const index = posts.findIndex(p => p.id === +id)
+  if (index === -1) return res.status(404).json({ message: "Post topilmadi" })
+
+  posts[index].likes += 1
+  await db.write(FILE, posts)
+  res.json(posts[index])
+}
+
+export async function unlikePost(req, res) {
+  const { id } = req.params
+  const posts = await db.read(FILE)
+  const index = posts.findIndex(p => p.id === +id)
+  if (index === -1) return res.status(404).json({ message: "Post topilmadi" })
+
+  if (posts[index].likes > 0) posts[index].likes -= 1
+  await db.write(FILE, posts)
+  res.json(posts[index])
 }
 

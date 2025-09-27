@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 
 import UsersRouter from "./src/routes/users.routes.js"
 import PostsRouter from "./src/routes/posts.routes.js"
+import CommentsRouter from "./src/routes/comments.router.js"
 
 dotenv.config()
 
@@ -17,6 +18,7 @@ app.use(morgan("dev"))
 
 app.use("/users",UsersRouter)
 app.use("/posts",PostsRouter)
+app.use("/comments", CommentsRouter)
 
 app.get("/",(req,res)=>{
     res.json({message:`API yaxshi ishlamoqda`})

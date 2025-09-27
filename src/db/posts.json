@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "id": 1,
+    "title": "Texnologiya yangiliklari",
+    "content": "So‘nggi texnologik yangiliklar haqida ma’lumot.",
+    "category": "tech",
+    "summary": "Texnologik sohada yangiliklar",
+    "slug": "texnologiya-yangiliklari",
+    "status": "published",
+    "views": 1,
+    "likes": 1,
+    "authorId": 1
+  },
+  {
+    "id": 2,
+    "title": "Musiqa va san’at yangiliklari",
+    "content": "San’at va musiqa olamidagi so‘nggi yangiliklar.",
+    "category": "entertainment",
+    "summary": "San’at va musiqa yangiliklari",
+    "slug": "musiqa-va-sanat-yangiliklari",
+    "status": "draft",
+    "views": 0,
+    "likes": 0,
+    "authorId": 3
+  },
+  {
+    "id": 3,
+    "title": "Python dasturlash bo‘yicha qo‘llanma",
+    "content": "Python dasturlash tilini o‘rganish uchun boshlang‘ich qo‘llanma.",
+    "category": "education",
+    "summary": "Python dasturlash boshlang‘ich qo‘llanma",
+    "slug": "python-dasturlash-boyicha-qollanma",
+    "status": "published",
+    "views": 2,
+    "likes": 2,
+    "authorId": 1
+  }
+]

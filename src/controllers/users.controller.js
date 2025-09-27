@@ -7,6 +7,13 @@ export async function getUsers(req,res) {
     res.json(users)
     
 }
+export async function getUserById(req, res) {
+  const { id } = req.params
+  const users = await db.read(FILE)
+  const user = users.find(u => u.id === +id)
+  if (!user) return res.status(404).json({ message: "User topilmadi" })
+  res.json(user)
+}
 
 export async function createUser(req,res) {
     let {name,email}=req.body
